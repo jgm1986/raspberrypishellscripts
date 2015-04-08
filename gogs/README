@@ -1,0 +1,28 @@
+Raspberry Pi Gogs Installation Scripts
+==========================================
+
+Copyright (C) 2015 Javier Gusano Martinez
+
+
+All these scripts are designed using this installation process:
+http://blog.meinside.pe.kr/Gogs-on-Raspberry-Pi/
+
+The following script "prep_go.sh" are property of meinside@gmail.com.
+More info and newer versions of this scripts:
+https://github.com/meinside/rpi-configs/blob/master/bin/prep_go.sh
+
+
+Status
+------
+In development. Use at your own risk.
+
+
+Installation Process
+------
+You have to follow all these steps for complete your Gogs installation
+suscesfully:
+
+1) Run Go installation script: ./prep_go.sh
+
+2) This installation process use MySQL as database server. Then run this
+   script and follow the MySQL installation steps.
