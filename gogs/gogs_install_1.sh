@@ -17,8 +17,9 @@ if [ $(cat .bashrc | grep "# Go installation" | wc -l) -eq "0" ]; then
 	echo "    export GOPATH=\$HOME/srcs/go" >> .bashrc
 	echo "    export PATH=\$PATH:\$GOROOT/bin" >> .bashrc
 	echo "fi" >> .bashrc
-	exec bash
 	echo "Done!"
+	read -rsp $'Please launch this script -gogs_install_1.sh- one more time before continue. Press any key to continue...\n' -n1 key
+	exec bash
 fi
 echo "Installing Git and MySQL..."
 sudo apt-get update
