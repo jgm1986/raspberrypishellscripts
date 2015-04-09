@@ -5,11 +5,11 @@ Copyright (C) 2015 Javier Gusano Martinez
 
 
 All these scripts are designed using this installation process:
-http://blog.meinside.pe.kr/Gogs-on-Raspberry-Pi/
+ http://blog.meinside.pe.kr/Gogs-on-Raspberry-Pi/
 
 The following script "prep_go.sh" are property of meinside@gmail.com.
 More info and newer versions of this scripts:
-https://github.com/meinside/rpi-configs/blob/master/bin/prep_go.sh
+ https://github.com/meinside/rpi-configs/blob/master/bin/prep_go.sh
 
 
 Status
@@ -25,81 +25,100 @@ suscesfully:
 1) Run Go installation script: ./prep_go.sh
 
 2) This installation process use MySQL as database server. Then run this
-   script and follow the MySQL installation steps.
-	Run: ./gogs_install_1.sh
-	Note: At the end of this script, the Gogs config file is opened
-	      automatically. Please, modify it with your own configuration.
-		  An example of some of this parammeters is defined at the end
-		  of this file.
+   script and follow the MySQL installation steps:
+    ./gogs_install_1.sh
+
+   Note: At the end of this script, the Gogs config file is opened
+         automatically. Please, modify it with your own configuration.
+         An example of some of this parammeters is defined on "Gogs 
+         config file" chart on this file.
 
 3) Run the second configuration script: ./gogs_install_2.sh
    Note: Check connection to the Gogs server using this URL pattern:
-         http://RASPBERRY_IP:GOGS_PORT
+    http://RASPBERRY_IP:GOGS_PORT
 
 4) If you want launch this server automatically at startup, first reboot
-   your Raspberry Pi and next launch this script: ./gogs_as_service.sh
+   your Raspberry Pi and next launch this script:
+    ./gogs_as_service.sh
 
    
 Gogs config file
 ------
 You can modify the Gogs config file with this command:
-$ cd $GOPATH/src/github.com/gogits/gogs
-$ nano custom/conf/app.ini
+    $ cd $GOPATH/src/github.com/gogits/gogs
+    $ nano custom/conf/app.ini
 
 The next lines shows an example of this config file parammeters:
 1) Change ROOT to the path of the directory which you created above.
-[repository]
-ROOT = /home/pi/somewhere/gogs-repositories
+    [repository]
+    ROOT = /home/pi/somewhere/gogs-repositories
 
 2) Change username and password for database connection.
-[database]
-; Either "mysql", "postgres" or "sqlite3", it's your choice
-DB_TYPE = mysql
-HOST = 127.0.0.1:3306
-NAME = gogs
-USER = gogs
-PASSWD = SOME_PASSWORD
-; For "postgres" only, either "disable", "require" or "verify-full"
-SSL_MODE = disable
-; For "sqlite3" only
-PATH = data/gogs.db
+    [database]
+    ; Either "mysql", "postgres" or "sqlite3", it's your choice
+    DB_TYPE = mysql
+    HOST = 127.0.0.1:3306
+    NAME = gogs
+    USER = gogs
+    PASSWD = SOME_PASSWORD
+    ; For "postgres" only, either "disable", "require" or "verify-full"
+    SSL_MODE = disable
+    ; For "sqlite3" only
+    PATH = data/gogs.db
 
 3) If you want Gogs to be run in production mode, change it.
-; Either "dev", "prod" or "test", default is "dev"
-RUN_MODE = prod
+    ; Either "dev", "prod" or "test", default is "dev"
+    RUN_MODE = prod
 
 4) Change domain, port, or other values.
-[server]
-PROTOCOL = http
-DOMAIN = my-raspberrypi-domain.com
-ROOT_URL = %(PROTOCOL)s://%(DOMAIN)s:%(HTTP_PORT)s/
-HTTP_ADDR =
-HTTP_PORT = 8080
-SSH_PORT = 22
-; Disable CDN even in "prod" mode
-OFFLINE_MODE = false
-DISABLE_ROUTER_LOG = false
-; Generate steps:
-; $ cd path/to/gogs/custom/https
-; $ go run $GOROOT/src/pkg/crypto/tls/generate_cert.go -ca=true -duration=8760h0m0s -host=my-raspberrypi-domain.com
-CERT_FILE = custom/https/cert.pem
-KEY_FILE = custom/https/key.pem
-; Upper level of template and static file path
-; default is the path where Gogs is executed
-STATIC_ROOT_PATH =
+    [server]
+    PROTOCOL = http
+    DOMAIN = my-raspberrypi-domain.com
+    ROOT_URL = %(PROTOCOL)s://%(DOMAIN)s:%(HTTP_PORT)s/
+    HTTP_ADDR =
+    HTTP_PORT = 8080
+    SSH_PORT = 22
+    ; Disable CDN even in "prod" mode
+    OFFLINE_MODE = false
+    DISABLE_ROUTER_LOG = false
+    ; Generate steps:
+    ; $ cd path/to/gogs/custom/https
+    ; $ go run $GOROOT/src/pkg/crypto/tls/generate_cert.go -ca=true -duration=8760h0m0s -host=my-raspberrypi-domain.com
+    CERT_FILE = custom/https/cert.pem
+    KEY_FILE = custom/https/key.pem
+    ; Upper level of template and static file path
+    ; default is the path where Gogs is executed
+    STATIC_ROOT_PATH =
 
 5) Change the default secret key for security.
-[security]
-; !!CHANGE THIS TO KEEP YOUR USER DATA SAFE!!
-SECRET_KEY = _secret_0123456789_
+    [security]
+    ; !!CHANGE THIS TO KEEP YOUR USER DATA SAFE!!
+    SECRET_KEY = _secret_0123456789_
 
 6) If you want to change the page titles...
-; App name that shows on every page title
-APP_NAME = Gogs on my Raspberry Pi
+    ; App name that shows on every page title
+    APP_NAME = Gogs on my Raspberry Pi
 
 7) You'll meet Install Steps For First-time Run page demanding some
    check-ups. If you see a complaint about Run User, change it to your 
    current user name. It can be changed manually in the 
    custom/conf/app.ini file:
-; Change it if you run locally
-RUN_USER = some_user
+    ; Change it if you run locally
+    RUN_USER = some_user
+
+
+MySQL: Gogs user password change
+------
+The script use the following password for the Gogs user database:
+   WRITE_CUSTOM_PASSWORD
+The user can modify this script before its execution. If you forget modify 
+it, the easy way to change this password is following this steps:
+
+1) Login to MySQL using Gogs user with this command:
+    mysql -u gogs -p
+
+2) Enter the default password for this user: WRITE_CUSTOM_PASSWORD
+
+3) Now you should be in a MySQL session(mysql>). Then copy and paste
+   this command changing 'YOUR_NEW_PASSWORD' by the new Git user pass:
+    SET PASSWORD FOR 'gogs'@'localhost' = PASSWORD('YOUR_NEW_PASSWORD');
