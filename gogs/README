@@ -26,3 +26,80 @@ suscesfully:
 
 2) This installation process use MySQL as database server. Then run this
    script and follow the MySQL installation steps.
+	Run: ./gogs_install_1.sh
+	Note: At the end of this script, the Gogs config file is opened
+	      automatically. Please, modify it with your own configuration.
+		  An example of some of this parammeters is defined at the end
+		  of this file.
+
+3) Run the second configuration script: ./gogs_install_2.sh
+   Note: Check connection to the Gogs server using this URL pattern:
+         http://RASPBERRY_IP:GOGS_PORT
+
+4) If you want launch this server automatically at startup, first reboot
+   your Raspberry Pi and next launch this script: ./gogs_as_service.sh
+
+   
+Gogs config file
+------
+You can modify the Gogs config file with this command:
+$ cd $GOPATH/src/github.com/gogits/gogs
+$ nano custom/conf/app.ini
+
+The next lines shows an example of this config file parammeters:
+1) Change ROOT to the path of the directory which you created above.
+[repository]
+ROOT = /home/pi/somewhere/gogs-repositories
+
+2) Change username and password for database connection.
+[database]
+; Either "mysql", "postgres" or "sqlite3", it's your choice
+DB_TYPE = mysql
+HOST = 127.0.0.1:3306
+NAME = gogs
+USER = gogs
+PASSWD = SOME_PASSWORD
+; For "postgres" only, either "disable", "require" or "verify-full"
+SSL_MODE = disable
+; For "sqlite3" only
+PATH = data/gogs.db
+
+3) If you want Gogs to be run in production mode, change it.
+; Either "dev", "prod" or "test", default is "dev"
+RUN_MODE = prod
+
+4) Change domain, port, or other values.
+[server]
+PROTOCOL = http
+DOMAIN = my-raspberrypi-domain.com
+ROOT_URL = %(PROTOCOL)s://%(DOMAIN)s:%(HTTP_PORT)s/
+HTTP_ADDR =
+HTTP_PORT = 8080
+SSH_PORT = 22
+; Disable CDN even in "prod" mode
+OFFLINE_MODE = false
+DISABLE_ROUTER_LOG = false
+; Generate steps:
+; $ cd path/to/gogs/custom/https
+; $ go run $GOROOT/src/pkg/crypto/tls/generate_cert.go -ca=true -duration=8760h0m0s -host=my-raspberrypi-domain.com
+CERT_FILE = custom/https/cert.pem
+KEY_FILE = custom/https/key.pem
+; Upper level of template and static file path
+; default is the path where Gogs is executed
+STATIC_ROOT_PATH =
+
+5) Change the default secret key for security.
+[security]
+; !!CHANGE THIS TO KEEP YOUR USER DATA SAFE!!
+SECRET_KEY = _secret_0123456789_
+
+6) If you want to change the page titles...
+; App name that shows on every page title
+APP_NAME = Gogs on my Raspberry Pi
+
+7) You'll meet Install Steps For First-time Run page demanding some
+   check-ups. If you see a complaint about Run User, change it to your 
+   current user name. It can be changed manually in the 
+   custom/conf/app.ini file:
+; Change it if you run locally
+RUN_USER = some_user
