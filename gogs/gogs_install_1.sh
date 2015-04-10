@@ -37,7 +37,7 @@ mysql -u $MYSQLUSER -p -e "DROP DATABASE IF EXISTS gogs;"
 mysql -u $MYSQLUSER -p -e "CREATE DATABASE IF NOT EXISTS gogs CHARACTER SET utf8 COLLATE utf8_general_ci;"
 mysql -u $MYSQLUSER -p -e "GRANT ALL ON gogs.* to 'gogs'@'localhost' identified by 'WRITE_CUSTOM_PASSWORD';"
 echo "Done!"
-mkdir -p ~/somewhere/gogs-repositories
+mkdir -p ~/gogs-repositories
 cd $GOPATH/src/github.com/gogits/gogs
 mkdir -p custom/conf
 cp conf/app.ini custom/conf/app.ini

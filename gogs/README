@@ -51,7 +51,7 @@ You can modify the Gogs config file with this command:
 The next lines shows an example of this config file parammeters:
 1) Change ROOT to the path of the directory which you created above.
     [repository]
-    ROOT = /home/pi/somewhere/gogs-repositories
+    ROOT = /home/pi/gogs-repositories
 
 2) Change username and password for database connection.
     [database]
