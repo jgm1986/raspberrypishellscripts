@@ -43,3 +43,4 @@ else
 	echo "Nothing to do..."
 fi
 echo "Done!"
+df -h
