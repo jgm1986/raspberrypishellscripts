@@ -2,12 +2,20 @@
 set -e
 # CUSTOMIZE THIS SCRIPT WITH YOUR OWN VALUES:
 MYSQLUSER="root"
+MYSQL_GOGS_PASSWORD="jgusmar"
 # End user edit parammeters
 
 echo "***********************************************************"
 echo "* Googs installation                                      *"
 echo "*                                                 Step: 1 *"
 echo "***********************************************************"
+# Check if the $GOPATH var are defined on system
+if [ $GOPATH -eq  ] ; then
+	echo "ERROR: Your system do not contains GOPATH system var defined."
+	echo "       If you have run the GO installer script first, please "
+	echo "       close this shell session. If not, please run it."
+	exit
+fi
 cd ~
 if [ $(cat .bashrc | grep "# Go installation" | wc -l) -eq "0" ]; then
 	echo "NOTE: Modifing .bashrc wit Go directories..."
@@ -35,7 +43,7 @@ echo "Done!"
 echo "Configuring MySQL Database for Gogs..."
 mysql -u $MYSQLUSER -p -e "DROP DATABASE IF EXISTS gogs;"
 mysql -u $MYSQLUSER -p -e "CREATE DATABASE IF NOT EXISTS gogs CHARACTER SET utf8 COLLATE utf8_general_ci;"
-mysql -u $MYSQLUSER -p -e "GRANT ALL ON gogs.* to 'gogs'@'localhost' identified by 'WRITE_CUSTOM_PASSWORD';"
+mysql -u $MYSQLUSER -p -e "GRANT ALL ON gogs.* to 'gogs'@'localhost' identified by '$MYSQL_GOGS_PASSWORD';"
 echo "Done!"
 mkdir -p ~/gogs-repositories
 cd $GOPATH/src/github.com/gogits/gogs
