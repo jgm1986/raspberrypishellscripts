@@ -1,0 +1,40 @@
+
+pyLoad Installation Script
+==========================================
+
+Copyright (C) 2015 Javier Gusano Martinez
+
+
+This script provide an automated system for basic installation for the last versión
+of pyLoad.
+
+Status
+------
+In development. Use at your own risk.
+
+Installation Process
+------
+1) Launch the installation script with this command: ./pyload_install.sh
+
+2) During the installation process, the pyLoad configuration script will be executed.
+   Please select the correct parameters as Language, download directory...
+   NOTE: When the script ask to you about the webserver, select "threaded" mode for
+         avoid future problems:
+         Server ([builtin], threaded, fastcgi, lightweight): threaded
+
+Start pyLoad Manually
+------
+The way to launch our pyLoad using the shell is using this command:
+pyLoadCore --daemon
+
+pyLoad On Raspberry Pi Startup
+------
+1) We use "crontab" for start automatically pyLoad on our Raspberry Pi on startup.
+   Write this command to open the crontab editor: crontab -e
+
+2) Insert this line at the end of the file:
+   @reboot pyLoadCore –-daemon
+
+3) Save and close the file. The easy way to check if it is running, is rebooting
+   our Raspberry Pi. Next, login to the pyLoad Web Interface (http://raspberryip:8000).
+   Enjoy!
