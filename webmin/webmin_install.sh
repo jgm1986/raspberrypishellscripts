@@ -18,7 +18,7 @@ sudo apt-get install	perl				\
 			libauthen-sasl-perl		\
 			mdadm				\
 			-y
-wget http://prdownloads.sourceforge.net/webadmin/webmin_1.740_all.deb
-sudo dpkg -i webmin_1.740_all.deb
-rm webmin_1.740_all.deb
+wget -O webmin.deb http://sourceforge.net/projects/webadmin/files/latest/download
+sudo dpkg -i webmin.deb
+rm webmin.deb
 echo "Done!"
