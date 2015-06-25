@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 echo "***********************************************************"
-echo "* Full System Upgrade...                                  *"
+echo "* GitLab Installer for Raspberry Pi 2                     *"
 echo "***********************************************************"
 echo "[INFO] Installing necessary packages..."
 sudo apt-get install nodejs-legacy -y

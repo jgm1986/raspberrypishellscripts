@@ -1,3 +1,6 @@
+# Gitlab customized config file
+gitlab/gitlab.rb.template
+
 # Created by https://www.gitignore.io
 
 ### Linux ###
