@@ -103,7 +103,7 @@ external_url 'PUT_YOUR_GITLAB_EXTERNAL_URL_HERE!'
 ## For setting up backups
 ## see https://gitlab.com/gitlab-org/omnibus-gitlab/blob/629def0a7a26e7c2326566f0758d4a27857b52a3/README.md#backups
 
- gitlab_rails['backup_path'] = "/home/pi/gitlab-backup"
+ gitlab_rails['backup_path'] = "/home/pi/backup"
 # gitlab_rails['backup_keep_time'] = 604800
 # gitlab_rails['backup_upload_connection'] = {
 #   'provider' => 'AWS',
