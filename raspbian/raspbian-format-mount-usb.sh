@@ -16,11 +16,11 @@ echo "WARNING! All data saved on the USB drives will be ereased."
 read -rsp $'Press Y if you want continue with this process...' -n1 key
 if [[ "$key" == "Y" ]] || [[ "$key" == "y" ]]; then
 	# UNCOMMENT THESE LINES IF YOU HAVE TO UNMOUNT YOUR DEVICES
-	#echo "Unmounting USB drives..."
+	echo "Unmounting USB drives..."
 	#sudo umount $USB_DRIVE1
 	#sudo umount $USB_DRIVE2
         #sudo umount $USB_DRIVE3
-	#echo "[ OK ]"
+	echo "[ OK ]"
 	echo "Formating as ext4 filesystem..."
 	sudo mkfs.ext4 $USB_DRIVE1
 	sudo mkfs.ext4 $USB_DRIVE2
@@ -34,7 +34,7 @@ if [[ "$key" == "Y" ]] || [[ "$key" == "y" ]]; then
 	echo "Modifyng FSTAB file..."
 	echo $USB_DRIVE1 $MDIR_DRIVE1 ext4 defaults 0 0 | sudo tee -a /etc/fstab
 	echo $USB_DRIVE2 $MDIR_DRIVE2 ext4 defaults 0 0 | sudo tee -a /etc/fstab
-	echo $USB_DRIVE2 $MDIR_DRIVE3 ext4 defaults 0 0 | sudo tee -a /etc/fstab
+	echo $USB_DRIVE3 $MDIR_DRIVE3 ext4 defaults 0 0 | sudo tee -a /etc/fstab
 	#sudo mount ${USB_DRIVE1}1 $MDIR_DRIVE1
 	#sudo mount ${USB_dRIVE2}1 $MDIR_DRIVE2
 	#sudo mount ${USB_dRIVE3}1 $MDIR_DRIVE3
