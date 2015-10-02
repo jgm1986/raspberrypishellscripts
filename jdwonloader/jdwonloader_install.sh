@@ -8,7 +8,7 @@ mkdir JDownloader
 cd JDownloader
 wget http://installer.jdownloader.org/JDownloader.jar
 java -jar JDownloader.jar
-sudo chmod +x Core.jar
+sudo chmod +x $HOME/JDownloader/Core.jar
 echo "Done!"
 echo ""
 echo "Please insert the following line to your crontab to start"

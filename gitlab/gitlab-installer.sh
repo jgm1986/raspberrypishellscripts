@@ -3,15 +3,19 @@ set -e
 echo "***********************************************************"
 echo "* GitLab Installer for Raspberry Pi 2                     *"
 echo "***********************************************************"
-echo "[INFO] Installing necessary packages..."
-sudo apt-get install nodejs-legacy -y
-echo "OK"
-cd $HOME
-echo "[INFO] Downloading Gitlab..."
-wget https://downloads-packages.s3.amazonaws.com/raspberry-pi/gitlab-ce_7.12.0~omnibus%2B20150622131235-1_armhf.deb
-echo "OK"
-echo "[INFO] Installing..."
-sudo dpkg -i gitlab-ce*.deb
+#echo "[INFO] Installing necessary packages..."
+#sudo apt-get install nodejs-legacy -y
+#echo "OK"
+#cd $HOME
+#echo "[INFO] Downloading Gitlab..."
+#wget https://downloads-packages.s3.amazonaws.com/raspberry-pi/gitlab-ce_7.12.0~omnibus%2B20150622131235-1_armhf.deb
+#echo "OK"
+#echo "[INFO] Installing..."
+#sudo dpkg -i gitlab-ce*.deb
+sudo apt-get install curl openssh-server ca-certificates postfix apt-transport-https
+curl https://packages.gitlab.com/gpg.key | sudo apt-key add -
+sudo curl -o /etc/apt/sources.list.d/gitlab_ce.list "https://packages.gitlab.com/install/repositories/gitlab/raspberry-pi2/config_file.list?os=debian&dist=wheezy" && sudo apt-get update
+sudo apt-get install gitlab-ce
 echo "Edit the following file with your own parameters before continue:"
 echo "   sudo nano /etc/gitlab/gitlab.rb"
 echo ""
