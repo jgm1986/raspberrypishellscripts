@@ -1,7 +1,7 @@
 ## Url on which GitLab will be reachable.
 ## For more details on configuring external_url see:
 ## https://gitlab.com/gitlab-org/omnibus-gitlab/blob/629def0a7a26e7c2326566f0758d4a27857b52a3/README.md#configuring-the-external-url-for-gitlab
-external_url 'PUT_YOUR_GITLAB_EXTERNAL_URL_HERE!'
+external_url 'http://192.168.100.254'
 
 
 ## Note: configuration settings below are optional.
@@ -103,7 +103,7 @@ external_url 'PUT_YOUR_GITLAB_EXTERNAL_URL_HERE!'
 ## For setting up backups
 ## see https://gitlab.com/gitlab-org/omnibus-gitlab/blob/629def0a7a26e7c2326566f0758d4a27857b52a3/README.md#backups
 
- gitlab_rails['backup_path'] = "/home/pi/backup"
+ gitlab_rails['backup_path'] = "/home/pi/usb/backups"
 # gitlab_rails['backup_keep_time'] = 604800
 # gitlab_rails['backup_upload_connection'] = {
 #   'provider' => 'AWS',
@@ -117,7 +117,7 @@ external_url 'PUT_YOUR_GITLAB_EXTERNAL_URL_HERE!'
 ## For setting up different data storing directory
 ## see https://gitlab.com/gitlab-org/omnibus-gitlab/blob/629def0a7a26e7c2326566f0758d4a27857b52a3/README.md#storing-git-data-in-an-alternative-directory
 ## If you want to use a single non-default directory to store git data use:
- git_data_dir "/home/pi/gitlab/git-data"
+ git_data_dir "/home/pi/usb/repositories"
 
 # gitlab_rails['satellites_timeout'] = 30
 
@@ -203,8 +203,8 @@ external_url 'PUT_YOUR_GITLAB_EXTERNAL_URL_HERE!'
  gitlab_rails['smtp_enable'] = true
  gitlab_rails['smtp_address'] = "smtp.gmail.com"
  gitlab_rails['smtp_port'] = 587
- gitlab_rails['smtp_user_name'] = "PUT_HERE_YOUR_GMAIL_ADDRESS!"
- gitlab_rails['smtp_password'] = "PUT_YOUR_PASSWORD_HERE!"
+ gitlab_rails['smtp_user_name'] = "YOUR E-MAIL HERE!"
+ gitlab_rails['smtp_password'] = "YOUR PASSWORD HERE!"
  gitlab_rails['smtp_domain'] = "smtp.gmail.com"
  gitlab_rails['smtp_authentication'] = "login"
  gitlab_rails['smtp_enable_starttls_auto'] = true

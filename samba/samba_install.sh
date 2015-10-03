@@ -12,7 +12,7 @@ echo "Setting parammeters for shared folder /home/pi/Descargas"
 # ------ EDIT THIS BLOCK  WITH YOUR OWN PREFERENCES------------
 sudo sed -i "\$a[Raspberry Pi Downloads]" /etc/samba/smb.conf
 sudo sed -i "\$acomment = Raspberry Pi Downloads" /etc/samba/smb.conf
-sudo sed -i "\$apath = /home/pi/Descargas" /etc/samba/smb.conf
+sudo sed -i "\$apath = /home/pi/usb/downloads" /etc/samba/smb.conf
 sudo sed -i "\$awriteable = Yes" /etc/samba/smb.conf
 sudo sed -i "\$acreate mask = 0777" /etc/samba/smb.conf
 sudo sed -i "\$adirectory mask = 0777" /etc/samba/smb.conf
