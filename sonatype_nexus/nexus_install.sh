@@ -16,3 +16,4 @@ rm $NEXUS_CONF/nexus.vmoptions
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo $SCRIPT_DIR
 cp $SCRIPT_DIR/nexus.vmoptions $NEXUS_CONF
+. $SCRIPT_DIR/nexus_autoinit.sh
