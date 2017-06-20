@@ -33,6 +33,9 @@ mmcblk0     179:0    0  14.9G  0 disk
  
 2. Format and mount the units executting this command: `./usb-repository-format.sh`
 3. Install GitLab with this: `./gitlab-installer.sh`
+
+**Note:** During the installation process, select *Internet Site* in *Postfix Configuration*.
+ 
 4. Edit the file `gitlab.rb` with your custom configuration requirements. Next, launch the `./gitlab-copy-config.sh` script.
 5. Finally, execute this command: `sudo gitlab-ctl reconfigure`
 
