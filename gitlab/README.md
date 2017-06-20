@@ -38,3 +38,32 @@ mmcblk0     179:0    0  14.9G  0 disk
 
 
 ## Restore a GitLab Backup file.
+
+The restore process requires the same GitLab version installed on the system. If not, an error like this is shown:
+```
+GitLab version mismatch:
+  Your current GitLab version (9.2.5) differs from the GitLab version in the backup!
+  Please switch to the following version and try again:
+  version: 9.0.1
+```
+
+**Note:** Older GitLab versions are available here: https://packages.gitlab.com/gitlab/gitlab-ce
+
+1. Install the same version of your backup file. Example:
+ ```bash
+curl -s https://packages.gitlab.com/install/repositories/gitlab/raspberry-pi2/script.deb.sh | sudo bash
+sudo apt-get install gitlab-ce=9.0.1-ce.0
+ ```
+2. Copy the backup file inside GitLab backup folder.
+3. Restore it using this command:
+ ```bash
+sudo gitlab-rake gitlab:backup:restore BACKUP=1490905817_2017_03_30
+ ```
+ **Note:** The configuration file name is `1490905817_2017_03_30_gitlab_backup.tar`.
+
+4. Upgrade your GitLab installation to the last version available with:
+  ```bash
+ sudo apt-get update
+ sudo apt-get upgrade -y
+  ```
+
