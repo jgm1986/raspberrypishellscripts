@@ -70,3 +70,21 @@ sudo gitlab-rake gitlab:backup:restore BACKUP=1490905817_2017_03_30
  sudo apt-get upgrade -y
   ```
 
+## Enable import projects from Gitlab.com
+
+Follow the next steps:
+
+1. Login into your Gitlab.com account.
+2. Navigate to: `Applications`
+3. Fill the name wit: `GitLab CE`
+4. Enter the next value in `Redirect URI`
+```
+http://192.168.100.252/import/gitlab/callback
+http://192.168.100.252/users/auth/gitlab/callback
+```
+5. Mark all check boxes:
+    - [x] api Access your API 
+    - [x] read_user Read user information 
+    - [x] read_registry Read Registry 
+    - [x] openid Authenticate using OpenID Connect 
+6. Click the `Save application` button and customize your `gitlab.rb` file with the **Application Id** and **Secret** values.
