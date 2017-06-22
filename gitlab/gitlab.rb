@@ -10,7 +10,7 @@
 ##! URL on which GitLab will be reachable.
 ##! For more details on configuring external_url see:
 ##! https://docs.gitlab.com/omnibus/settings/configuration.html#configuring-the-external-url-for-gitlab
-external_url 'http://192.168.100.254'
+external_url 'http://192.168.100.252'
 
 ## Legend
 ##! The following notations at the beginning of each line may be used to
@@ -213,14 +213,14 @@ external_url 'http://192.168.100.254'
 # gitlab_rails['omniauth_auto_link_ldap_user'] = false
 # gitlab_rails['omniauth_auto_link_saml_user'] = false
 # gitlab_rails['omniauth_external_providers'] = ['twitter', 'google_oauth2']
-# gitlab_rails['omniauth_providers'] = [
-#   {
-#     "name" => "google_oauth2",
-#     "app_id" => "YOUR APP ID",
-#     "app_secret" => "YOUR APP SECRET",
-#     "args" => { "access_type" => "offline", "approval_prompt" => "" }
-#   }
-# ]
+ gitlab_rails['omniauth_providers'] = [
+   {
+     "name" => "gitlab",
+     "app_id" => "PUT_HERE_API_ID",
+     "app_secret" => "PUT_HERE_API_SECRET",
+     "args" => { "scope" => "api" }
+   }
+ ]
 
 ### Backup Settings
 ###! Docs: https://docs.gitlab.com/omnibus/settings/backups.html
@@ -371,8 +371,8 @@ git_data_dirs({ "default" => { "path" => "/home/pi/gitlab" } })
  gitlab_rails['smtp_enable'] = true
  gitlab_rails['smtp_address'] = "smtp.gmail.com"
  gitlab_rails['smtp_port'] = 587
- gitlab_rails['smtp_user_name'] = "YOUREMAIL@gmail.com"
- gitlab_rails['smtp_password'] = "YOURPASSWORD"
+ gitlab_rails['smtp_user_name'] = "PUT_EMAIL_USER@gmail.com"
+ gitlab_rails['smtp_password'] = "PUT_PASSWORD"
  gitlab_rails['smtp_domain'] = "smtp.gmail.com"
  gitlab_rails['smtp_authentication'] = "login"
  gitlab_rails['smtp_enable_starttls_auto'] = true
