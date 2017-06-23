@@ -2,8 +2,8 @@
 set -e
 
 # CUSTOM THIS SCRIPT WITH THIS PARAMMETERS
-USB_DRIVE1=/dev/sdc1		# 64GB USB Drive for JDownloader Downloads.
-MDIR_DRIVE1=/home/pi/downloads		# Mount directory for USB_DRIVE1.
+USB_DRIVE1=/dev/sda1		# 64GB USB Drive for JDownloader Downloads.
+MDIR_DRIVE1=/home/pi/Downloads		# Mount directory for USB_DRIVE1.
 
 echo "***********************************************************"
 echo "* Format and mounting USBs...                             *"
@@ -11,7 +11,7 @@ echo "***********************************************************"
 lsblk
 echo ""
 echo "Disks to format:"
-echo " ·SDC1 --> JDownloader Downloads"
+echo " ·SDA1 --> JDownloader Downloads"
 echo ""
 echo "WARNING! All data saved on the USB drives will be ereased."
 read -rsp $'Press Y if you want continue with this process...' -n1 key
