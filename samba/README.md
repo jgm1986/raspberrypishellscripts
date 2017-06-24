@@ -1,24 +1,9 @@
+# Samba Installation Script
 
-Samba Installation Script
-==========================================
+## General
 
-Copyright (C) 2015 Javier Gusano Martinez
-
-
-This repository contains a list of shell scripts used by my Raspberry Pi .
-
-Status
-------
-In development. Use at your own risk.
-
-General
-------
-The current script is used for share the pyLoad download directory (/home/pi/Descargas)
+The current script is used for share the JDownloader downloads directory (/home/pi/Descargas)
 with my computers using Samba. This script generate 2 shared folder.
-    - Pi user home: Pi home use directory and subdirectories. This folder can be hiden
-                    inserting ";" symbol in all "[homes]" parammeters. You can see an
-                    example at the end of this readme file.
-    - Raspberry Pi Donwloads: pyLoad download directory. Contains all our downlads.
 
 Install
 ------
@@ -30,7 +15,7 @@ Install
 
 3) Comment the "[home]" block using ";" symbol for uncomment lines.
    The "smb.conf" file will be similar than:
-
+```
 	#======================= Share Definitions =======================
 
 	;[homes]
@@ -55,7 +40,7 @@ Install
 	# to \\server\username
 	# This might need tweaking when using external authentication schemes
 	;   valid users = %S
-
+```
 4) Restart Samba with this command: sudo /etc/init.d/samba restart
 
 Enjoy!
