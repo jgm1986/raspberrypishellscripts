@@ -17,9 +17,9 @@ echo "WARNING! All data saved on the USB drives will be ereased."
 read -rsp $'Press Y if you want continue with this process...' -n1 key
 if [[ "$key" == "Y" ]] || [[ "$key" == "y" ]]; then
 	# UNCOMMENT THESE LINES IF YOU HAVE TO UNMOUNT YOUR DEVICES
-	#echo "Unmounting USB drives..."
-	#sudo umount $USB_DRIVE1
-	#echo "[ OK ]"
+	echo "Unmounting USB drives..."
+	sudo umount $USB_DRIVE1
+	echo "[ OK ]"
 	echo "Formating as ext4 filesystem..."
 	sudo mkfs.ext4 $USB_DRIVE1
 	echo "[ OK ]"
@@ -33,6 +33,7 @@ if [[ "$key" == "Y" ]] || [[ "$key" == "y" ]]; then
 	echo "Reloading FSTAB..."
 	sudo mount -a
 	echo "[ OK ]"
+	sudo chown pi:pi $MDIR_DRIVE1
 else
 	echo "Nothing to do..."
 fi
